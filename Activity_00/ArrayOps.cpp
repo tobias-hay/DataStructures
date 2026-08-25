@@ -20,6 +20,7 @@ bool ArrayOps::isEmpty(const std::vector<int> &array) {
 
 std::vector<int> ArrayOps::copy(const std::vector<int> &array) {
     std::vector<int> arrCop = {};
+    arrCop.reserve(array.size());
 
     for (int i = 0; i < array.size(); i++) {
         arrCop.push_back(array[i]);
