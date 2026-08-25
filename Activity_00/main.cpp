@@ -19,5 +19,8 @@ int main() {
     std::cout << "arrayCopy: ";
     ArrayOps::print(arrayCopy);
 
+    std::cout << "numArray & arrayCopy isEqual? " << ArrayOps::isEqual(numArray, arrayCopy) << std::endl;
+    std::cout << "numArray & emptyArray isEqual? " << ArrayOps::isEqual(numArray, emptyArray) << std::endl;
+
     return 0;
 }
