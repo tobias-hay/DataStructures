@@ -38,3 +38,14 @@ bool ArrayOps::isEqual(const std::vector<int> &arr1, const std::vector<int> &arr
 
     return true;
 }
+
+std::vector<int> ArrayOps::generateArray(int length, int max) {
+    std::vector<int> newArr = {};
+    newArr.reserve(length);
+
+    for (int i = 0; i < length; i++) {
+        newArr.push_back(static_cast<int>(round(rand() % max)));
+    }
+
+    return newArr;
+}

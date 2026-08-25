@@ -9,6 +9,7 @@ public:
     static bool isEmpty(const std::vector<int>& array);
     static std::vector<int> copy(const std::vector<int>& array);
     static bool isEqual(const std::vector<int>& arr1, const std::vector<int>& arr2);
+    static std::vector<int> generateArray(int length, int max);
 };
 
 

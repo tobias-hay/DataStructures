@@ -22,5 +22,8 @@ int main() {
     std::cout << "numArray & arrayCopy isEqual? " << ArrayOps::isEqual(numArray, arrayCopy) << std::endl;
     std::cout << "numArray & emptyArray isEqual? " << ArrayOps::isEqual(numArray, emptyArray) << std::endl;
 
+    std::cout << "Random Array: ";
+    ArrayOps::print(ArrayOps::generateArray(23, 5));
+
     return 0;
 }
