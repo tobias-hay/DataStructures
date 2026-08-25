@@ -23,7 +23,10 @@ int main() {
     std::cout << "numArray & emptyArray isEqual? " << ArrayOps::isEqual(numArray, emptyArray) << std::endl;
 
     std::cout << "Random Array: ";
-    ArrayOps::print(ArrayOps::generateArray(23, 5));
+    std::vector randArray = ArrayOps::generateArray(10, 20);
+    ArrayOps::print(randArray);
+
+    std::cout << "Max Value: " << ArrayOps::max(randArray);
 
     return 0;
 }

@@ -49,3 +49,13 @@ std::vector<int> ArrayOps::generateArray(int length, int max) {
 
     return newArr;
 }
+
+int ArrayOps::max(const std::vector<int> &array) {
+    int highest = INT_MIN;
+
+    for (int i = 0; i < array.size(); i ++) {
+        if (array[i] > highest) highest = array[i];
+    }
+
+    return highest;
+}
