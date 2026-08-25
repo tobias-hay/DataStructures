@@ -3,4 +3,6 @@ project(Activity_00)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Activity_00 main.cpp)
+add_executable(Activity_00 main.cpp
+        ArrayOps.cpp
+        ArrayOps.h)
