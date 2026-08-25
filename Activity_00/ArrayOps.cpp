@@ -17,3 +17,13 @@ void ArrayOps::print(const std::vector<int>& array) {
 bool ArrayOps::isEmpty(const std::vector<int> &array) {
     return array.empty();
 }
+
+std::vector<int> ArrayOps::copy(const std::vector<int> &array) {
+    std::vector<int> arrCop = {};
+    
+    for (int i = 0; i < array.size(); i++) {
+        arrCop.push_back(array[i]);
+    }
+
+    return arrCop;
+}

@@ -7,6 +7,7 @@ class ArrayOps {
 public:
     static void print(const std::vector<int>& array);
     static bool isEmpty(const std::vector<int>& array);
+    static std::vector<int> copy(const std::vector<int>& array);
 };
 
 

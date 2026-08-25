@@ -13,5 +13,11 @@ int main() {
     std::cout << "isEmptyArrayEmpty? " << ArrayOps::isEmpty(emptyArray) << std::endl;
     std::cout << "isNullArrayEmpty? " << ArrayOps::isEmpty(nullArray) << std::endl;
 
+    const std::vector<int> arrayCopy = ArrayOps::copy(numArray);
+    std::cout << "numArray: ";
+    ArrayOps::print(numArray);
+    std::cout << "arrayCopy: ";
+    ArrayOps::print(arrayCopy);
+
     return 0;
 }
