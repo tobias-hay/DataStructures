@@ -26,7 +26,8 @@ int main() {
     std::vector randArray = ArrayOps::generateArray(10, 20);
     ArrayOps::print(randArray);
 
-    std::cout << "Max Value: " << ArrayOps::max(randArray);
+    std::cout << "Max Value: " << ArrayOps::max(randArray) << std::endl;
+    std::cout << "Min Value: " << ArrayOps::min(randArray) << std::endl;
 
     return 0;
 }

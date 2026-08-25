@@ -59,3 +59,13 @@ int ArrayOps::max(const std::vector<int> &array) {
 
     return highest;
 }
+
+int ArrayOps::min(const std::vector<int> &array) {
+    int smallest = INT_MAX;
+
+    for (int i = 0; i < array.size(); i ++) {
+        if (array[i] < smallest) smallest = array[i];
+    }
+
+    return smallest;
+}
