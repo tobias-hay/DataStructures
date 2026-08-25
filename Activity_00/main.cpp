@@ -11,7 +11,7 @@ int main() {
 
     std::cout << "isNumArrayEmpty? " << ArrayOps::isEmpty(numArray) << std::endl;
     std::cout << "isEmptyArrayEmpty? " << ArrayOps::isEmpty(emptyArray) << std::endl;
-    std::cout << "isNullArrayEmpty? " << ArrayOps::isEmpty(nullArray) << std::endl;f
+    std::cout << "isNullArrayEmpty? " << ArrayOps::isEmpty(nullArray) << std::endl;g
 
     return 0;
 }
