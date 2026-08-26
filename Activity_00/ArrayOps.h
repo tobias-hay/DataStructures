@@ -12,6 +12,7 @@ public:
     static std::vector<int> generateArray(int length, int max);
     static int max(const std::vector<int>& array);
     static int min(const std::vector<int>& array);
+    static bool exists(const std::vector<int> &array, int val);
 };
 
 

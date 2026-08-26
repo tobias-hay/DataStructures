@@ -69,3 +69,11 @@ int ArrayOps::min(const std::vector<int> &array) {
 
     return smallest;
 }
+
+bool ArrayOps::exists(const std::vector<int> &array, int val) {
+    for (int i = 0; i < array.size(); i++) {
+        if (array[i] == val) return true;
+    }
+
+    return false;
+}

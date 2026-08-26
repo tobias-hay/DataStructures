@@ -29,5 +29,8 @@ int main() {
     std::cout << "Max Value: " << ArrayOps::max(randArray) << std::endl;
     std::cout << "Min Value: " << ArrayOps::min(randArray) << std::endl;
 
+    std::vector largeArray = ArrayOps::generateArray(10000, 10000);
+    std::cout << "10 in largeArray? " << ArrayOps::exists(largeArray, 10);
+
     return 0;
 }
