@@ -13,6 +13,7 @@ public:
     static int max(const std::vector<int>& array);
     static int min(const std::vector<int>& array);
     static bool exists(const std::vector<int> &array, int val);
+    static std::vector<int> filter(const std::vector<int>&array, int val);
 };
 
 

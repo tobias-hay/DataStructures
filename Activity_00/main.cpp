@@ -30,7 +30,11 @@ int main() {
     std::cout << "Min Value: " << ArrayOps::min(randArray) << std::endl;
 
     std::vector largeArray = ArrayOps::generateArray(10000, 10000);
-    std::cout << "10 in largeArray? " << ArrayOps::exists(largeArray, 10);
+    std::cout << "10 in largeArray? " << ArrayOps::exists(largeArray, 10) << std::endl;
+
+    std::vector filteredArray = ArrayOps::filter(numArray, 3);
+    std::cout << "filteredArray: ";
+    ArrayOps::print(filteredArray);
 
     return 0;
 }

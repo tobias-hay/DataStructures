@@ -77,3 +77,13 @@ bool ArrayOps::exists(const std::vector<int> &array, int val) {
 
     return false;
 }
+
+std::vector<int> ArrayOps::filter(const std::vector<int> &array, int val) {
+    std::vector<int> newArr = {};
+
+    for (int i = 0; i < array.size(); i++) {
+        if (array[i] != val) newArr.push_back(array[i]);
+    }
+
+    return newArr;
+}
