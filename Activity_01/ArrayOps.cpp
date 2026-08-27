@@ -66,3 +66,18 @@ void ArrayOps::selection(std::vector<int> &array) {
         swap(array, jMin, i);
     }
 }
+
+void ArrayOps::insertion(std::vector<int> &array) {
+    for (int i = 1; i < array.size(); i++) {
+        int current = array[i];
+        int j = i - 1;
+
+        // green, walk back through the array, shift till we get smaller
+        while (j >= 0 && array[j] > current) {
+            array[j + 1] = array[j]; // shift to the right
+            j--; // push left to the front
+        }
+
+        array[j + 1] = current;
+    }
+}

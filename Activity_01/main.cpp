@@ -3,13 +3,14 @@
 #include "ArrayOps.h"
 
 int main() {
-    std::vector numArray = ArrayOps::generateArray(10, 10);
+    std::vector numArray = ArrayOps::generateArray(100000, 100000);
 
     // ArrayOps::bubble(numArray);
-    ArrayOps::selection(numArray);
+    // ArrayOps::selection(numArray);
+    ArrayOps::insertion(numArray);
 
     std::cout << "Sorted: ";
-    ArrayOps::print(numArray);
+    // ArrayOps::print(numArray);
 
     return 0;
 }

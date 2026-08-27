@@ -10,6 +10,7 @@ public:
     static void swap(std::vector<int>&array, int from, int to);
     static void bubble(std::vector<int>&array);
     static void selection(std::vector<int>&array);
+    static void insertion(std::vector<int>&array);
 };
 
 
