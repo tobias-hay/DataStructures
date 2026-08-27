@@ -35,17 +35,34 @@ std::vector<int> ArrayOps::generateArray(int length, int max) {
     return newArr;
 }
 
+void ArrayOps::swap(std::vector<int> &array, int from, int to) {
+    int temp = array[from];
+    array[from] = array[to];
+    array[to] = temp;
+}
+
 void ArrayOps::bubble(std::vector<int> &array) {
-    // Outer loop, red pointer
     for (int i = 0; i < array.size() - 1; i++) {
-        // Inner loop, green pointer
         for (int j = 0; j < array.size() - i - 1; j++) {
             if (array[j] > array[j + 1]) { // check if left is greater than zero
-                // Swap
-                int temp = array[j];
-                array[j] = array[j + 1];
-                array[j + 1] = temp;
+                swap(array, j, j+1);
             }
         }
+    }
+}
+
+void ArrayOps::selection(std::vector<int> &array) {
+    for (int i = 0; i < array.size(); i++) {
+        // index of smallest value found
+        int jMin = i; // assume I is smallest;
+
+        // loop through remaining, update the smallest index
+        for (int j = i + 1; j < array.size(); j++) {
+            if (array[j] < array[jMin]) {
+                jMin = j; // update jMin to point to new smallest
+            }
+        }
+
+        swap(array, jMin, i);
     }
 }
