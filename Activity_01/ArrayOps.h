@@ -11,6 +11,7 @@ public:
     static void bubble(std::vector<int>&array);
     static void selection(std::vector<int>&array);
     static void insertion(std::vector<int>&array);
+    static void qs(std::vector<int>&array, int low, int high);
 };
 
 

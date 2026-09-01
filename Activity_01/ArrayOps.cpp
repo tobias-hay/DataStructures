@@ -81,3 +81,25 @@ void ArrayOps::insertion(std::vector<int> &array) {
         array[j + 1] = current;
     }
 }
+
+void ArrayOps::qs(std::vector<int> &array, int low, int high) {
+    // Base case
+    if (low >= high)
+        return; // array of 1 is sorted
+
+    int pivot = array[high];
+    int counter = low; // where to put pivot
+
+    for (int i = low; i < high; i++) {
+        if (array[i] < pivot) {
+            swap(array, i, counter);
+            counter++;
+        }
+    }
+
+    // Insert pivot in correct spot
+    swap(array, counter, high);
+
+    qs(array, low, counter - 1); // left side
+    qs(array, counter + 1, high); // right side
+}
