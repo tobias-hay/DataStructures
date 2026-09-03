@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 23)
 
 add_executable(Activity_01 main.cpp
         ArrayOps.cpp
-        ArrayOps.h)
+        ArrayOps.h
+        MergeSort.cpp
+        MergeSort.h)
