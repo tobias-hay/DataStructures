@@ -11,3 +11,17 @@ void StaticSorts::bubble(std::vector<int> &arr) {
         }
     }
 }
+
+void StaticSorts::selection(std::vector<int> &arr) {
+    for (int i = 0; i < arr.size(); i++) {
+        int minIndex = i;
+
+        for (int j = i + 1; j < arr.size(); j++) {
+            if (arr[minIndex] > arr[j])
+                minIndex = j;
+        }
+
+        Utils::swap(arr, minIndex, i);
+    }
+}
+

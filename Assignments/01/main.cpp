@@ -10,7 +10,7 @@ int main() {
     std::cout << "Unsorted: ";
     Utils::print(arr);
 
-    StaticSorts::bubble(arr);
+    StaticSorts::selection(arr);
 
     std::cout << "Sorted: ";
     Utils::print(arr);
