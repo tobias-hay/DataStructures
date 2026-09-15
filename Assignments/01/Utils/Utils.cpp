@@ -33,3 +33,9 @@ std::vector<int> Utils::generateArray(const int length, const int maxVal) {
 
     return arr;
 }
+
+void Utils::swap(std::vector<int> &arr, int fromIdx, int toIdx) {
+    int fromVal = arr[fromIdx];
+    arr[fromIdx] = arr[toIdx];
+    arr[toIdx] = fromVal;
+}
