@@ -1,6 +1,7 @@
 #include <vector>
 #include <iostream>
 
+#include "Sorts/QuickSort.h"
 #include "Sorts/StaticSorts.h"
 #include "Utils/Utils.h"
 
@@ -10,7 +11,7 @@ int main() {
     std::cout << "Unsorted: ";
     Utils::print(arr);
 
-    StaticSorts::insertion(arr);
+    QuickSort qs(arr);
 
     std::cout << "Sorted: ";
     Utils::print(arr);

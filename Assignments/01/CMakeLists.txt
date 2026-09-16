@@ -7,4 +7,6 @@ add_executable(01 main.cpp
         Sorts/StaticSorts.cpp
         Sorts/StaticSorts.h
         Utils/Utils.cpp
-        Utils/Utils.h)
+        Utils/Utils.h
+        Sorts/QuickSort.cpp
+        Sorts/QuickSort.h)
