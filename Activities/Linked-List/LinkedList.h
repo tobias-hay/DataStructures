@@ -22,6 +22,7 @@ public:
     int size() const;
     void addFront(E obj);
     E getFront();
+    std::optional<E> removeBack();
 };
 
 template<typename E>
@@ -56,6 +57,27 @@ E LinkedList<E>::getFront() {
     if (head == nullptr) throw std::out_of_range("Linked List is Empty");
 
     return head->data;
+}
+
+template<typename E>
+std::optional<E> LinkedList<E>::removeBack() {
+    if (head == nullptr)
+        return std::nullopt;
+
+    if (head->next == nullptr)
+        return std::nullopt; // TODO: UPDATE TO REMOVE_FRONT
+
+    Node* curr = head;
+    Node* prev = nullptr;
+
+    while (curr->next != nullptr) {
+        prev = curr;
+        curr = curr->next;
+    }
+
+    prev->next == nullptr;
+    currentSize--;
+    return curr->data;
 }
 
 
