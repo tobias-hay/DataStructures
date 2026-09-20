@@ -11,4 +11,6 @@ add_executable(01 main.cpp
         Sorts/QuickSort.cpp
         Sorts/QuickSort.h
         Sorts/MergeSort.cpp
-        Sorts/MergeSort.h)
+        Sorts/MergeSort.h
+        Sorts/RadixSort.cpp
+        Sorts/RadixSort.h)
