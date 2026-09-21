@@ -8,6 +8,9 @@ class Timer {
 private:
     std::chrono::time_point<std::chrono::steady_clock> startTime{};
     std::chrono::time_point<std::chrono::steady_clock> endTime{};
+    bool started;
+    bool ended;
+
 public:
     void Start();
     std::chrono::duration<double, std::milli> Stop();
