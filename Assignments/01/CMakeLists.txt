@@ -15,4 +15,6 @@ add_executable(01 main.cpp
         Sorts/RadixSort.cpp
         Sorts/RadixSort.h
         Utils/Timer.cpp
-        Utils/Timer.h)
+        Utils/Timer.h
+        Utils/Collector.cpp
+        Utils/Collector.h)

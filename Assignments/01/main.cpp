@@ -5,24 +5,25 @@
 #include "Sorts/QuickSort.h"
 #include "Sorts/RadixSort.h"
 #include "Sorts/StaticSorts.h"
+#include "Utils/Collector.h"
 #include "Utils/Timer.h"
 #include "Utils/Utils.h"
 
 int main() {
-    std::vector<int> arr = Utils::generateArray(1000000, 10000);
-
-    std::cout << "Unsorted: " << std::endl;;
-    // Utils::print(arr);
-
     auto t = Timer();
-    t.Start();
+    auto c = Collector();
 
-    RadixSort rs(arr);
+    for (int count = 100; count < 10000; count += 100) {
+        std::vector<int> arr = Utils::generateArray(count, count);
 
-    std::cout << "Elapsed time: " << t.Stop() << std::endl;
+        t.Start();
+        StaticSorts::bubble(arr);
+        t.Stop();
 
-    std::cout << "Sorted: " << std::endl;
-    // Utils::print(arr);
+        c.Log(Collector::ST_BUBBLE, count, t.GetTime());
+    }
+
+    c.DumpCSV();
 
     return 0;
 }

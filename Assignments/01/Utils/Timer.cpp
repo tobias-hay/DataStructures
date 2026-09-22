@@ -12,6 +12,7 @@ std::chrono::duration<double, std::milli> Timer::Stop() {
 
     endTime = std::chrono::steady_clock::now();
     ended = true;
+    started = false;
 
     return endTime - startTime;
 }
