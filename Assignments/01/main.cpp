@@ -1,5 +1,7 @@
 #include <vector>
 #include <iostream>
+#include <thread>
+#include <functional>
 
 #include "Sorts/MergeSort.h"
 #include "Sorts/QuickSort.h"
@@ -9,51 +11,76 @@
 #include "Utils/Timer.h"
 #include "Utils/Utils.h"
 
-int main() {
+void Sorter(int maxCount, Collector::SortType type, Collector &c) {
     auto t = Timer();
-    auto c = Collector();
 
-    for (int count = 100; count < 20000; count += 100) {
+    for (int count = 100; count <= maxCount; count += 100) {
+        std::vector<int> arr = Utils::generateArray(count, count);
 
-        for (int i = 0; i < 6; i++) {
-            std::vector<int> arr = Utils::generateArray(count, count);
-
-            t.Start();
-            switch (i) {
-                case 0: {
-                    StaticSorts::bubble(arr);
-                    break;
-                }
-                case 1: {
-                    StaticSorts::selection(arr);
-                    break;
-                }
-                case 2: {
-                    StaticSorts::insertion(arr);
-                    break;
-                }
-                case 3: {
-                    MergeSort ms(arr);
-                    break;
-                }
-                case 4: {
-                    QuickSort qs(arr);
-                    break;
-                }
-                case 5: {
-                    RadixSort rs(arr);
-                    break;
-                }
-                default:
-                    throw std::invalid_argument("How did you get here");
+        t.Start();
+        switch (type) {
+            case Collector::ST_BUBBLE: {
+                StaticSorts::bubble(arr);
+                break;
             }
-            t.Stop();
-
-            std::cout << "Completed " << i << " with " << count << " elements, taking  " << t.GetTime() << std::endl;
-
-            c.Log(static_cast<Collector::SortType>(i), count, t.GetTime());
+            case Collector::ST_SELECTION: {
+                StaticSorts::selection(arr);
+                break;
+            }
+            case Collector::ST_INSERTION: {
+                StaticSorts::insertion(arr);
+                break;
+            }
+            case Collector::ST_MERGE: {
+                MergeSort ms(arr);
+                break;
+            }
+            case Collector::ST_QUICK: {
+                QuickSort qs(arr);
+                break;
+            }
+            case Collector::ST_RADIX: {
+                RadixSort rs(arr);
+                break;
+            }
+            default:
+                throw std::invalid_argument("How did you get here");
         }
+        t.Stop();
+
+        std::cout << "Completed " << type << " with " << count << " elements, taking  " << t.GetTime() << std::endl;
+
+        c.Log(type, count, t.GetTime());
     }
+}
+
+int main() {
+    auto c = Collector();
+    constexpr int MAX_ARRAY_LENGTH = 20000;
+
+    int sortNum = 5;
+    int iters = 0;
+    unsigned int maxThreads = std::thread::hardware_concurrency();
+    if (maxThreads == 0) maxThreads = 1;
+
+    while (sortNum >= 0) {
+        std::vector<std::thread> sorterThreads{};
+
+        while (iters < maxThreads && sortNum >= 0) {
+            sorterThreads.emplace_back(Sorter, MAX_ARRAY_LENGTH, static_cast<Collector::SortType>(sortNum), std::ref(c));
+            sortNum--;
+            iters++;
+        }
+
+        for (auto& th : sorterThreads) {
+            if (th.joinable()) {
+                th.join();
+            }
+        }
+
+        iters = 0;
+    }
+
 
     c.DumpCSV();
 
