@@ -26,21 +26,21 @@ bool Collector::DumpCSV() {
     }
     csv << std::endl;
 
-    for (int i = 0; i < data->size(); i++) {
+    for (int i = 0; i < 6; i++) {
         auto &typeTimes = data[i];
 
         csv << TypeToString(i) << ",";
 
         for (std::pair<int, double> &time : typeTimes) {
             csv << time.second << ",";
-
-            std::cout << "Array Length: " << time.first << ", Time Taken (ms): " << time.second << std::endl;
         }
 
         csv << std::endl;
     }
 
     csv.close();
+
+    std::cout << "Dumped CSV File" << std::endl;
 
     return true;
 }

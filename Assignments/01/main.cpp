@@ -13,14 +13,46 @@ int main() {
     auto t = Timer();
     auto c = Collector();
 
-    for (int count = 100; count < 10000; count += 100) {
-        std::vector<int> arr = Utils::generateArray(count, count);
+    for (int count = 100; count < 20000; count += 100) {
 
-        t.Start();
-        StaticSorts::bubble(arr);
-        t.Stop();
+        for (int i = 0; i < 6; i++) {
+            std::vector<int> arr = Utils::generateArray(count, count);
 
-        c.Log(Collector::ST_BUBBLE, count, t.GetTime());
+            t.Start();
+            switch (i) {
+                case 0: {
+                    StaticSorts::bubble(arr);
+                    break;
+                }
+                case 1: {
+                    StaticSorts::selection(arr);
+                    break;
+                }
+                case 2: {
+                    StaticSorts::insertion(arr);
+                    break;
+                }
+                case 3: {
+                    MergeSort ms(arr);
+                    break;
+                }
+                case 4: {
+                    QuickSort qs(arr);
+                    break;
+                }
+                case 5: {
+                    RadixSort rs(arr);
+                    break;
+                }
+                default:
+                    throw std::invalid_argument("How did you get here");
+            }
+            t.Stop();
+
+            std::cout << "Completed " << i << " with " << count << " elements, taking  " << t.GetTime() << std::endl;
+
+            c.Log(static_cast<Collector::SortType>(i), count, t.GetTime());
+        }
     }
 
     c.DumpCSV();
