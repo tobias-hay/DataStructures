@@ -49,7 +49,7 @@ void Sorter(int maxCount, Collector::SortType type, Collector &c) {
         t.Stop();
 
         if (count % 25000 == 0) {
-            std::cout << "Completed " << count << " elements using sort #" << type << ", taking  " << t.GetTime() << std::endl;
+            std::cout << "Completed " << count << " element milestone using sort #" << type << ", taking  " << t.GetTime() << std::endl;
         }
 
         c.Log(type, count, t.GetTime());
@@ -58,7 +58,7 @@ void Sorter(int maxCount, Collector::SortType type, Collector &c) {
 
 int main() {
     auto c = Collector();
-    constexpr int MAX_ARRAY_LENGTH = 50000;
+    constexpr int MAX_ARRAY_LENGTH = 1000000;
 
     int sortNum = 5;
     int iters = 0;

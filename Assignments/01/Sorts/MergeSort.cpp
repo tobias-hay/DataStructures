@@ -2,7 +2,7 @@
 #include "MergeSort.h"
 
 MergeSort::MergeSort(std::vector<int> &passedArr) : arr(passedArr) {
-    tempArr.reserve(passedArr.size());
+    tempArr.resize(passedArr.size());
 
     split(0, passedArr.size() - 1);
 }

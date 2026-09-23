@@ -18,7 +18,7 @@ std::chrono::duration<double, std::milli> Timer::Stop() {
 }
 
 std::chrono::duration<double, std::milli> Timer::GetTime() const {
-    if (!ended) throw std::runtime_error("Need to end timer before getting elasped time");
+    if (!ended) throw std::runtime_error("Need to end timer before getting elapsed time");
 
     return endTime - startTime;
 }
