@@ -48,7 +48,9 @@ void Sorter(int maxCount, Collector::SortType type, Collector &c) {
         }
         t.Stop();
 
-        std::cout << "Completed " << type << " with " << count << " elements, taking  " << t.GetTime() << std::endl;
+        if (count % 25000 == 0) {
+            std::cout << "Completed " << count << " elements using sort #" << type << ", taking  " << t.GetTime() << std::endl;
+        }
 
         c.Log(type, count, t.GetTime());
     }
@@ -56,12 +58,14 @@ void Sorter(int maxCount, Collector::SortType type, Collector &c) {
 
 int main() {
     auto c = Collector();
-    constexpr int MAX_ARRAY_LENGTH = 20000;
+    constexpr int MAX_ARRAY_LENGTH = 50000;
 
     int sortNum = 5;
     int iters = 0;
     unsigned int maxThreads = std::thread::hardware_concurrency();
     if (maxThreads == 0) maxThreads = 1;
+
+    std::cout << "Using " << maxThreads << " (max 6) threads..." << std::endl;
 
     while (sortNum >= 0) {
         std::vector<std::thread> sorterThreads{};
