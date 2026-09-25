@@ -1,5 +1,3 @@
-package Test;
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -16,7 +14,7 @@ public class LinkedListTest {
 	@Test
 	public void testAddFront() {
 		String elements = "ABCDEFGHI";
-		LinkedList<String> list = new LinkedList();
+		LinkedList<String> list = new LinkedList<>();
 
 		for(int i = 0; i < elements.length(); i++) {
 			list.addFront(elements.substring(i, i+1));

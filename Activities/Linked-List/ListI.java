@@ -37,7 +37,7 @@ public interface ListI<E> {
 	 * @param obj
 	 * @return
 	 */
-	E indexOf(E obj);
+	long indexOf(E obj);
 	
 	/**
 	 * Tests whether an obj is contained in the List.

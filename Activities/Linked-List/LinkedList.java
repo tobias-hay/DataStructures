@@ -20,37 +20,138 @@ public class LinkedList<E> implements ListI<E> {
 
     @Override
     public void addFront(E obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Node<E> node = new Node<>(obj);
+
+        node.next = head;
+        head = node;
+
+        currentSize++;
+    }
+
+    public E getFront() {
+        if (head == null) {
+            return null;
+        }
+        
+        return head.data;
     }
 
     @Override
     public void addBack(E obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (head == null) {
+            addFront(obj);
+            return;
+        }
+
+        Node<E> tmp = head;
+
+        while (tmp.next != null) {
+            tmp = tmp.next;
+        }
+
+        Node<E> node = new Node<>(obj);
+        tmp.next = node;
+        currentSize++;
+
+        return;
     }
 
     @Override
     public E removeFront() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (head == null) {
+            return null;
+        }
+
+        E data = head.data;
+        head = head.next;
+
+        currentSize--;
+
+        return data;
     }
 
     @Override
     public E removeBack() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (head == null) {
+            return null;
+        }
+
+        if (head.next == null) {
+            return removeFront();
+        }
+
+        Node<E> curr = head;
+        Node<E> prev = null;
+
+        while (curr.next != null) {
+            prev = curr;
+            curr = curr.next;
+        }
+
+        prev.next = null;
+        currentSize--;
+
+        return curr.data;
     }
 
     @Override
     public E get(long n) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (head == null) {
+            return null;
+        }
+
+        if (n > currentSize) {
+            return null;
+        }
+
+        Node<E> tmp = head;
+
+        for (int i = 0; i < n; i++) {
+            tmp = tmp.next;
+        }
+
+        return tmp.data;
     }
 
     @Override
-    public E indexOf(E obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public long indexOf(E obj) {
+        if (head == null) {
+            return -1;
+        }
+
+        Node<E> tmp = head;
+        long index = 0;
+
+        while (tmp != null) {
+            if (((Comparable<E>) tmp.data).compareTo(obj) == 0) {
+                return index;
+            }
+
+            tmp = tmp.next;
+            index++;
+        }
+
+        return -1;
     }
 
     @Override
     public boolean contains(E obj) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return indexOf(obj) != -1;
+    }
+
+    @Override 
+    public String toString() {
+        Node<E> tmp = head;
+        String str = "(" + currentSize + ") head -> ";
+
+        while (tmp != null) {
+            str += tmp.data + " -> ";
+            tmp = tmp.next;
+        }
+
+        str += "null";
+
+        return str;
     }
   
 }
