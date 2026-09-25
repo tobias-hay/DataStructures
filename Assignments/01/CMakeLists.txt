@@ -3,4 +3,18 @@ project(01)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(01 main.cpp)
+add_executable(01 main.cpp
+        Sorts/StaticSorts.cpp
+        Sorts/StaticSorts.h
+        Utils/Utils.cpp
+        Utils/Utils.h
+        Sorts/QuickSort.cpp
+        Sorts/QuickSort.h
+        Sorts/MergeSort.cpp
+        Sorts/MergeSort.h
+        Sorts/RadixSort.cpp
+        Sorts/RadixSort.h
+        Utils/Timer.cpp
+        Utils/Timer.h
+        Utils/Collector.cpp
+        Utils/Collector.h)
