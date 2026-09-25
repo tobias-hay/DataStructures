@@ -58,7 +58,7 @@ void Sorter(int maxCount, Collector::SortType type, Collector &c) {
 
 int main() {
     auto c = Collector();
-    constexpr int MAX_ARRAY_LENGTH = 1000000;
+    constexpr int MAX_ARRAY_LENGTH = 100000;
 
     int sortNum = 5;
     int iters = 0;

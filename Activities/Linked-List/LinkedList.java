@@ -1,5 +1,11 @@
-public class LinkedList<E> implements ListI<E> {
+/**
+ * 1) When impl a stack, you don't know the size of the stack nor need access to any other elements than the top.
+ * 2) Thinking about all the edge cases
+ * 3) An ADT is just a way to store data without the programer having to worry about how its handled
+ */
 
+
+public class LinkedList<E> implements ListI<E> {
     class Node<E> {
       public Node<E> next;
       public E data;
