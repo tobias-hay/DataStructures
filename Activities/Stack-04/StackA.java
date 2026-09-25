@@ -6,7 +6,7 @@ public class StackA<E> implements StackI<E> {
   //Constr
   
   public StackA() {
-    this(10); // Call the other constr that has an arg
+    this(20); // Call the other constr that has an arg
   }
   
   public StackA(int capacity) {
@@ -18,7 +18,8 @@ public class StackA<E> implements StackI<E> {
   @Override
   public void push(E obj) {
     if (isFull()) {
-      throw new IllegalStateException("Stack is full");
+      // throw new IllegalStateException("Stack is full");
+      System.out.println("Stack is full");
     }
 
     arr[++top] = obj;

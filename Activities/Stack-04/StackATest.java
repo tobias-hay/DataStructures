@@ -1,32 +1,32 @@
-package test;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.Test;
 
-import org.junit.jupiter.api.Test;
-
-class StackATest {
+public class StackATest {
 
 	@Test
-	void test() {
+	public void test() {
 		//fail("Not yet implemented");
 	}
 	
 	@Test
-	void initStack() {
+	public void initStack() {
 		StackA<String> s = new StackA<>();
 		
 		assertNotNull(s);
 	}
 	
 	@Test
-	void emptyPop() {
+	public void emptyPop() {
 		StackA<String> s = new StackA<>();
 		
 		assertNull(s.pop());
 	}
 	
 	@Test
-	void pushPopSingleTest() {
+	public void pushPopSingleTest() {
 		StackA<String> s = new StackA<>();
 		
 		String[] n = {"ONE","TWO","THREE"};
@@ -41,7 +41,7 @@ class StackATest {
 	}
 	
 	@Test
-	void pushPopMultiTest() {
+	public void pushPopMultiTest() {
 		StackA<String> s = new StackA<>();
 		
 		String[] n = {"ONE","TWO","THREE","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN"};
@@ -59,8 +59,8 @@ class StackATest {
 		assertNull(s.pop());
 	}
 	
-	@Test
-	void sizeTest() {
+	@Test 
+	public void sizeTest() {
 		StackA<String> s = new StackA<>();
 		
 		String[] n = {"ONE","TWO","THREE","THREE","FOUR","FIVE","SIX","SEVEN","EIGHT","NINE","TEN"};
