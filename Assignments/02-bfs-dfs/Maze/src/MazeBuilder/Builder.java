@@ -27,7 +27,7 @@ public class Builder {
 		build();
 	}
 
-	public void build() {
+	private void build() {
 		Random rand = new Random();
 
 		for (int row = 0; row < y; row++) {
