@@ -32,7 +32,7 @@ public class Builder {
 
 		for (int row = 0; row < y; row++) {
 			for (int col = 0; col < x; col++) {
-				boolean isWall = Math.random() < wallChance;
+				boolean isWall = rand.nextDouble() < wallChance;
 
 				CellState cell = new CellState(isWall ? CellType.WALL : CellType.EMPTY);
 				maze[row][col] = cell;
