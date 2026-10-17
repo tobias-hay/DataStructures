@@ -5,10 +5,14 @@ import java.util.Random;
 public class Builder {
 	private static final double DEFAULT_CHANCE = 0.20;
 
+	public record Point(int x, int y) {
+	};
+
 	private CellState[][] maze;
 	private int x;
 	private int y;
 	private double wallChance;
+	private Point start;
 
 	public Builder(int x, int y) {
 		this(x, y, DEFAULT_CHANCE);
@@ -38,6 +42,7 @@ public class Builder {
 		int startX = rand.nextInt(x);
 		int startY = rand.nextInt(y);
 		maze[startY][startX].type = CellType.START;
+		start = new Point(startX, startY);
 
 		int endX = rand.nextInt(x);
 		int endY = rand.nextInt(y);
