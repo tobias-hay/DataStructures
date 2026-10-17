@@ -3,67 +3,67 @@ package MazeBuilder;
 import java.util.Random;
 
 public class Builder {
-  private static final double DEFAULT_CHANCE = 0.20;
+	private static final double DEFAULT_CHANCE = 0.20;
 
-  private CellState[][] maze;
-  private int x;
-  private int y;
-  private double wallChance;
+	private CellState[][] maze;
+	private int x;
+	private int y;
+	private double wallChance;
 
-  public Builder(int x, int y) {
-    this(x, y, DEFAULT_CHANCE);
-  } 
+	public Builder(int x, int y) {
+		this(x, y, DEFAULT_CHANCE);
+	}
 
-  public Builder(int x, int y, double wallChance) {
-    this.x = x;
-    this.y = y;
-    this.wallChance = wallChance;
-    maze = new CellState[y][x];
+	public Builder(int x, int y, double wallChance) {
+		this.x = x;
+		this.y = y;
+		this.wallChance = wallChance;
+		maze = new CellState[y][x];
 
-    build();
-  }
+		build();
+	}
 
-  public void build() {
-    Random rand = new Random();
+	public void build() {
+		Random rand = new Random();
 
-    for (int row = 0; row < y; row++) {
-      for (int col = 0; col < x; col++) {
-        boolean isWall = Math.random() < wallChance;
+		for (int row = 0; row < y; row++) {
+			for (int col = 0; col < x; col++) {
+				boolean isWall = Math.random() < wallChance;
 
-        CellState cell = new CellState(isWall ? CellType.WALL : CellType.EMPTY);
-        maze[row][col] = cell;
-      }
-    }
+				CellState cell = new CellState(isWall ? CellType.WALL : CellType.EMPTY);
+				maze[row][col] = cell;
+			}
+		}
 
-    int startX = rand.nextInt(x);
-    int startY = rand.nextInt(y);
-    maze[startY][startX].type = CellType.START;
+		int startX = rand.nextInt(x);
+		int startY = rand.nextInt(y);
+		maze[startY][startX].type = CellType.START;
 
-    int endX = rand.nextInt(x);
-    int endY = rand.nextInt(y);
-    maze[endY][endX].type = CellType.END;
-  }
+		int endX = rand.nextInt(x);
+		int endY = rand.nextInt(y);
+		maze[endY][endX].type = CellType.END;
+	}
 
-  @Override 
-  public String toString() {
-    // top of maze
-    String str = "|";
-    str += "-".repeat(x) + "|\n";
+	@Override
+	public String toString() {
+		// top of maze
+		String str = "|";
+		str += "-".repeat(x) + "|\n";
 
-    // center bits
-    for (CellState[] row : maze) {
-      str += "|";
-        
-      for (CellState cell : row) {
-        str += cell.type.toString() + "";
-      }
+		// center bits
+		for (CellState[] row : maze) {
+			str += "|";
 
-      str += "|\n";
-    }
+			for (CellState cell : row) {
+				str += cell.type.toString() + "";
+			}
 
-    // bottom of maze
-    str += "|";
-    str += "-".repeat(x) + "|\n";
-    return str;
-  }
+			str += "|\n";
+		}
+
+		// bottom of maze
+		str += "|";
+		str += "-".repeat(x) + "|\n";
+		return str;
+	}
 }
