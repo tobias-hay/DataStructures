@@ -11,7 +11,7 @@ public class Stack<E> {
 	}
 
 	public void push(E obj) {
-		ll.addBack(obj);
+		ll.addFront(obj);
 		top++;
 	}
 
@@ -20,7 +20,8 @@ public class Stack<E> {
 			return null;
 		}
 
-		return ll.get(top--);
+		top--;
+		return ll.removeFront();
 	}
 
 	public E peek() {
@@ -28,7 +29,7 @@ public class Stack<E> {
 			return null;
 		}
 
-		return ll.get(top);
+		return ll.getFront();
 	}
 
 	public int size() {
@@ -43,7 +44,7 @@ public class Stack<E> {
 	public String toString() {
 		String str = "---top---\n";
 
-		for (int i = top; i >= 0; i--) {
+		for (int i = 0; i < top; i++) {
 			str += "| " + ll.get(i) + " |\n";
 		}
 
