@@ -28,7 +28,10 @@ public class Builder {
 	}
 
 	private void build() {
-		Random rand = new Random();
+		long seed = System.nanoTime();
+		Random rand = new Random(seed);
+
+		System.out.println("Seed: " + seed);
 
 		for (int row = 0; row < y; row++) {
 			for (int col = 0; col < x; col++) {
