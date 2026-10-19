@@ -8,6 +8,11 @@ public class CellState {
 	public CellState(CellType type) {
 		this.type = type;
 		this.visited = false;
-		this.dist = -1;
+		this.dist = Integer.MAX_VALUE;
+	}
+
+	@Override
+	public String toString() {
+		return "(" + type + ", " + visited + ", " + dist + ")";
 	}
 }

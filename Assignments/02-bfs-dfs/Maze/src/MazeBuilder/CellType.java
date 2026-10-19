@@ -4,7 +4,8 @@ public enum CellType {
 	EMPTY,
 	WALL,
 	START,
-	END;
+	END,
+	PATH;
 
 	@Override
 	public String toString() {
@@ -17,6 +18,8 @@ public enum CellType {
 				return "S";
 			case END:
 				return "E";
+			case PATH:
+				return "+";
 			default:
 				return "?";
 		}
