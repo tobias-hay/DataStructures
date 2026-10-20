@@ -7,22 +7,27 @@ import java.util.Scanner;
 
 import MazeBuilder.Builder;
 import MazeBuilder.Builder.Point;
+import Structures.Queue;
 import Structures.Stack;
 
 public class Traverser {
 	private Builder mazeBuilder;
-	private Point start;
+	private Scanner sc;
 
 	public Traverser(Builder mazeBuilder) {
 		this.mazeBuilder = mazeBuilder;
-		this.start = mazeBuilder.getStart();
+		this.sc = new Scanner(System.in);
 	}
 
 	public void dfs() {
-		Scanner sc = new Scanner(System.in);
+		mazeBuilder.reset();
+		Point start = mazeBuilder.getStart();
+
 		int dist = 0;
 		Stack<Point> points = new Stack<>();
 		points.push(start);
+
+		System.out.println("DFS (Stack) based solution:");
 
 		while (!points.isEmpty()) {
 			Point currPt = points.pop();
@@ -35,7 +40,6 @@ public class Traverser {
 
 			if (currState.type == CellType.END) {
 				System.out.println("Found END at " + currPt);
-				sc.close();
 				System.out.println(mazeBuilder);
 
 				backtrack(currPt);
@@ -80,8 +84,6 @@ public class Traverser {
 
 		System.out.println(mazeBuilder);
 		System.out.println("Maze is impossible to solve");
-
-		sc.close();
 	}
 
 	private void backtrack(Point endPt) {
@@ -125,5 +127,70 @@ public class Traverser {
 		}
 
 		System.out.println(mazeBuilder);
+	}
+
+	public void bfs() {
+		mazeBuilder.reset();
+		Point start = mazeBuilder.getStart();
+
+		Queue<Point> points = new Queue<>();
+		Scanner sc = new Scanner(System.in);
+		int dist = 0;
+		points.enqueue(start);
+
+		System.out.println("BFS (Queue) based solution:");
+
+		while (!points.isEmpty()) {
+			Point currPt = points.dequeue();
+			CellState currState = mazeBuilder.get(currPt);
+
+			// System.out.println("Curr Pt: " + currPt);
+			// System.out.println(mazeBuilder);
+			// System.out.println(points);
+
+			if (currState.type == CellType.END) {
+				System.out.println("Found END at " + currPt);
+				System.out.println(mazeBuilder);
+
+				backtrack(currPt);
+
+				return;
+			}
+
+			if (!currState.visited) {
+				mazeBuilder.visit(currPt);
+				dist++;
+
+				Point nPt = currPt.north();
+				if (mazeBuilder.canVisit(nPt)) {
+					mazeBuilder.setDist(nPt, dist);
+					points.enqueue(nPt);
+				}
+
+				Point sPt = currPt.south();
+				if (mazeBuilder.canVisit(sPt)) {
+					mazeBuilder.setDist(sPt, dist);
+					points.enqueue(sPt);
+				}
+
+				Point ePt = currPt.east();
+				if (mazeBuilder.canVisit(ePt)) {
+					mazeBuilder.setDist(ePt, dist);
+					points.enqueue(ePt);
+				}
+
+				Point wPt = currPt.west();
+				if (mazeBuilder.canVisit(wPt)) {
+					mazeBuilder.setDist(wPt, dist);
+					points.enqueue(wPt);
+				}
+
+				// System.out.println(points);
+				// String l = sc.nextLine();
+			}
+		}
+
+		System.out.println(mazeBuilder);
+		System.out.println("Maze is impossible to solve");
 	}
 }

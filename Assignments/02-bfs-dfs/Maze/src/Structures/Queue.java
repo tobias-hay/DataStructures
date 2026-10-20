@@ -5,7 +5,7 @@ public class Queue<E> {
 	private int front;
 	private int size;
 
-	Queue() {
+	public Queue() {
 		queue = new LinkedList<E>();
 		front = 0;
 		size = 0;

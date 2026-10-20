@@ -150,6 +150,10 @@ public class Builder {
 		maze[pt.y][pt.x].dist = 0;
 	}
 
+	public void reset() {
+		build();
+	}
+
 	@Override
 	public String toString() {
 		// top of maze
