@@ -2,6 +2,8 @@ package MazeBuilder;
 
 import java.util.Random;
 
+// 133270890541875l || 135909360475000l
+
 public class Builder {
 	private static final double DEFAULT_CHANCE = 0.20;
 
@@ -31,16 +33,43 @@ public class Builder {
 	private CellState[][] maze;
 	private int x;
 	private int y;
+	private long wallSeed;
 	private double wallChance;
 	private Point start;
+
+	public Builder(String seed) {
+		if (!seed.matches("\\d{1,};\\d{1,};\\d{1,}")) {
+			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed>");
+		}
+
+		int xVal;
+		int yVal;
+		long wallSeedVal;
+
+		String[] seedParts = seed.split(";");
+		try {
+			xVal = Integer.parseInt(seedParts[0]);
+			yVal = Integer.parseInt(seedParts[1]);
+			wallSeedVal = Long.parseLong(seedParts[2]);
+		} catch (Exception e) {
+			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed>");
+		}
+
+		this(xVal, yVal, wallSeedVal, DEFAULT_CHANCE);
+	}
 
 	public Builder(int x, int y) {
 		this(x, y, DEFAULT_CHANCE);
 	}
 
 	public Builder(int x, int y, double wallChance) {
+		this(x, y, System.nanoTime(), wallChance);
+	}
+
+	public Builder(int x, int y, long wallSeed, double wallChance) {
 		this.x = x + 2;
 		this.y = y + 2;
+		this.wallSeed = wallSeed;
 		this.wallChance = wallChance;
 		maze = new CellState[this.y][this.x];
 
@@ -48,11 +77,9 @@ public class Builder {
 	}
 
 	private void build() {
-		// 133270890541875l || 135909360475000l
-		long seed = System.nanoTime();
-		Random rand = new Random(seed);
+		Random rand = new Random(wallSeed);
 
-		System.out.println("Seed: " + seed);
+		System.out.println("Seed: " + (x - 2) + ";" + (y - 2) + ";" + wallSeed);
 
 		for (int row = 0; row < y; row++) {
 			for (int col = 0; col < x; col++) {
