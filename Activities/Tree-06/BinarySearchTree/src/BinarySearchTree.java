@@ -22,12 +22,36 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
 
   @Override
   public boolean contains(K key) {
-    return false;
+    return searchTree(root, key) != null;
   }
 
   @Override
   public V get(K key) {
-    return null;
+    Node<K, V> tmp = searchTree(root, key);
+
+    if (tmp == null) {
+      return null;
+    }
+
+    return tmp.value;
+  }
+
+  private Node<K, V> searchTree(Node<K, V> currNode, K key) {
+    if (currNode == null) {
+      return null;
+    }
+
+    if (((Comparable) key).compareTo(currNode.key) == 0) {
+      return currNode;
+    }
+
+    // Go Left
+    if (((Comparable) key).compareTo(currNode.key) < 0) {
+      return searchTree(currNode.left, key);
+    }
+
+    // Go Right
+    return searchTree(currNode.right, key);
   }
 
   @Override
@@ -61,14 +85,9 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
   }
 
   private void inOrder(Node<K, V> node) {
-    if (node.left != null) {
+    if (node != null) {
       inOrder(node.left);
-    }
-
-    System.out.println(node.value);
-
-    if (node.right != null) {
-
+      System.out.println(node.value);
       inOrder(node.right);
     }
   }
