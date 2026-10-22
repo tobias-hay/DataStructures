@@ -1,3 +1,5 @@
+import BST.BinarySearchTree;
+
 public class App {
     public static void main(String[] args) throws Exception {
         BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();

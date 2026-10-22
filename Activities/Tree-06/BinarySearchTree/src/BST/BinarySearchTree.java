@@ -1,5 +1,6 @@
-public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
+package BST;
 
+public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
   private class Node<NK, NV> {
     public Node<NK, NV> left, right;
     public NK key;
