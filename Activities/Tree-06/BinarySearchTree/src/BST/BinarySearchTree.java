@@ -79,6 +79,77 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
 
   @Override
   public void remove(K key) {
+    delete(root, key);
+  }
+
+  private void delete(Node<K, V> root, K key) {
+    Node<K, V> parent = null;
+    Node<K, V> curr = root;
+
+    while (curr != null && ((Comparable) key).compareTo(curr.key) != 0) {
+      parent = curr;
+
+      if (((Comparable) key).compareTo(curr.key) < 0) {
+        // Go Left
+        curr = curr.left;
+      } else {
+        // Go Right
+        curr = curr.right;
+      }
+    }
+
+    // Nothing found with key, early return
+    if (curr == null) {
+      return;
+    }
+
+    // 1. node is le leaf
+    if (curr.left == null && curr.right == null) {
+      // if node is not root, then set parent left/right to null
+      if (curr == root) {
+        root = null;
+      } else {
+        if (parent.left == curr) {
+          parent.left = null;
+        } else {
+          parent.right = null;
+        }
+      }
+    } else if (curr.left != null && curr.right != null) {
+      // 2. node has two childs
+      // find successor/predecessor
+      Node<K, V> pred = findPred(curr);
+
+      K predKey = pred.key;
+      V predVal = pred.value;
+
+      delete(root, predKey);
+
+      curr.key = predKey;
+      curr.value = predVal;
+    } else {
+      Node<K, V> child = (curr.left == null) ? curr.right : curr.left;
+
+      if (curr == root) {
+        root = child;
+      } else {
+        if (curr == parent.left) {
+          parent.left = child;
+        } else {
+          parent.right = child;
+        }
+      }
+    }
+  }
+
+  private Node<K, V> findPred(Node<K, V> curr) {
+    curr = curr.left;
+
+    while (curr.right != null) {
+      curr = curr.right;
+    }
+
+    return curr;
   }
 
   public void printInOrder() {
