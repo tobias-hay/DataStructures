@@ -1,12 +1,14 @@
+package Heap;
+
 public class MaxHeap {
     private int[] heap;
     private int size;
 
-    MaxHeap() {
+    public MaxHeap() {
         this(512);
     }
 
-    MaxHeap(int cap) {
+    public MaxHeap(int cap) {
         heap = new int[cap];
         size = 0;
     }
@@ -30,7 +32,7 @@ public class MaxHeap {
 
     private boolean hasRight(int i) {
         return right(i) < size;
-    }   
+    }
 
     private void swap(int i, int j) {
         int tmp = heap[i];
@@ -42,7 +44,8 @@ public class MaxHeap {
         while (i > 0) {
             int p = parent(i);
 
-            if (heap[i] < heap[p]) break;
+            if (heap[i] < heap[p])
+                break;
 
             swap(i, p);
 
@@ -63,7 +66,8 @@ public class MaxHeap {
                 }
             }
 
-            if (heap[largerChildIndex] < heap[i]) break;
+            if (heap[largerChildIndex] < heap[i])
+                break;
 
             swap(i, largerChildIndex);
 
@@ -75,7 +79,7 @@ public class MaxHeap {
     public void insert(int value) {
         if (size == heap.length - 1) {
             int[] newHeap = new int[heap.length * 2];
-            
+
             for (int i = 0; i < heap.length; i++) {
                 newHeap[i] = heap[i];
             }
@@ -91,8 +95,9 @@ public class MaxHeap {
     }
 
     public int remove() {
-        if (size == 0) return -1;
-        
+        if (size == 0)
+            return -1;
+
         int root = heap[0];
 
         heap[0] = heap[--size];
@@ -114,7 +119,7 @@ public class MaxHeap {
         return heap.length;
     }
 
-    @Override 
+    @Override
     public String toString() {
         String str = "";
 
