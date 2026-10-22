@@ -1,3 +1,5 @@
+import BST.BinarySearchTree;
+
 public class App {
     public static void main(String[] args) throws Exception {
         BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
@@ -14,6 +16,9 @@ public class App {
         bst.add(3, "Three");
         bst.add(17, "Seventeen");
         bst.add(67, "Sixty Seven");
+        bst.add(36, "Thirty Six");
+
+        bst.remove(36);
 
         bst.printInOrder();
     }
