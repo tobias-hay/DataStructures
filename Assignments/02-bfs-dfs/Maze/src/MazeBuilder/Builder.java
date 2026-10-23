@@ -166,10 +166,7 @@ public class Builder {
 
 			for (CellState cell : row) {
 				str += ((cell.visited ? "\033[42m" : "\033[41m") + (cell.type.equals(CellType.PATH) ? "\033[44m" : ""))
-						+
-						// (cell.type.equals(CellType.EMPTY) ? (cell.dist == Integer.MAX_VALUE ? " " :
-						// cell.dist)
-						cell.type.toString()
+						+ cell.type.toString()
 						+ "\033[0m";
 			}
 
