@@ -18,7 +18,7 @@ public class App {
         bst.add(67, "Sixty Seven");
         bst.add(36, "Thirty Six");
 
-        bst.remove(36);
+        bst.remove(29);
 
         bst.printInOrder();
     }

@@ -82,9 +82,14 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
     delete(root, key);
   }
 
-  private void delete(Node<K, V> root, K key) {
+  private void delete(Node<K, V> passedNode, K key) {
     Node<K, V> parent = null;
-    Node<K, V> curr = root;
+    Node<K, V> curr = passedNode;
+
+    if (passedNode != null && passedNode.left == null && passedNode.right == null
+        && ((Comparable) key).compareTo(passedNode.key) == 0) {
+      root = null;
+    }
 
     while (curr != null && ((Comparable) key).compareTo(curr.key) != 0) {
       parent = curr;
@@ -106,7 +111,7 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
     // 1. node is le leaf
     if (curr.left == null && curr.right == null) {
       // if node is not root, then set parent left/right to null
-      if (curr == root) {
+      if (curr == passedNode) {
         root = null;
       } else {
         if (parent.left == curr) {
@@ -123,14 +128,14 @@ public class BinarySearchTree<K, V> implements BinarySearchTreeI<K, V> {
       K predKey = pred.key;
       V predVal = pred.value;
 
-      delete(root, predKey);
+      delete(passedNode, predKey);
 
       curr.key = predKey;
       curr.value = predVal;
     } else {
       Node<K, V> child = (curr.left == null) ? curr.right : curr.left;
 
-      if (curr == root) {
+      if (curr == passedNode) {
         root = child;
       } else {
         if (curr == parent.left) {
