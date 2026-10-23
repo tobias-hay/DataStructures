@@ -2,6 +2,8 @@ package MazeBuilder;
 
 import java.util.Random;
 
+import Utils.CLR;
+
 // 133270890541875l || 135909360475000l
 
 public class Builder {
@@ -169,9 +171,10 @@ public class Builder {
 			str += "|";
 
 			for (CellState cell : row) {
-				str += ((cell.visited ? "\033[42m" : "\033[41m") + (cell.type.equals(CellType.PATH) ? "\033[44m" : ""))
-						+ cell.type.toString()
-						+ "\033[0m";
+				str += ((cell.visited ? CLR.GREEN_BG : CLR.RED_BG) // if visited, use green bg, else red bg
+						+ (cell.type.equals(CellType.PATH) ? CLR.BLUE_BG.toString() : "")) // if path, use blue bg, else prev
+						+ cell.type.toString() // the actual cell item
+						+ CLR.RESET; // reset so rest of prints look normal
 			}
 
 			str += "|\n";

@@ -36,8 +36,6 @@ public class Traverser {
 			CellState currState = mazeBuilder.get(currPt);
 
 			if (currState.type == CellType.END) {
-				System.out.println("Found END at " + currPt);
-
 				backtrack(currPt);
 				return;
 			}
@@ -94,8 +92,6 @@ public class Traverser {
 			CellState currState = mazeBuilder.get(currPt);
 
 			if (currState.type == CellType.END) {
-				System.out.println("Found END at " + currPt);
-
 				backtrack(currPt);
 				return;
 			}
@@ -141,8 +137,6 @@ public class Traverser {
 	private void backtrack(Point endPt) {
 		Point currPt = endPt;
 		CellState currState = mazeBuilder.get(currPt);
-
-		Print.print(mazeBuilder.toString() + "\n");
 
 		while (currState.type.equals(CellType.EMPTY) || currState.type.equals(CellType.END)) {
 			if (!currState.type.equals(CellType.END)) {
