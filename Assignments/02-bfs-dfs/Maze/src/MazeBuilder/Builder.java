@@ -154,6 +154,10 @@ public class Builder {
 		build();
 	}
 
+	public int getPrintHeight() {
+		return y + 2;
+	}
+
 	@Override
 	public String toString() {
 		// top of maze
@@ -175,7 +179,7 @@ public class Builder {
 
 		// bottom of maze
 		str += "|";
-		str += "-".repeat(x) + "|\n";
+		str += "-".repeat(x) + "|";
 		return str;
 	}
 }

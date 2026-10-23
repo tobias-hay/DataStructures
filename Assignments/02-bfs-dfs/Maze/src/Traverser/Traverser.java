@@ -9,6 +9,7 @@ import MazeBuilder.Builder;
 import MazeBuilder.Builder.Point;
 import Structures.Queue;
 import Structures.Stack;
+import Utils.Print;
 
 public class Traverser {
 	private Builder mazeBuilder;
@@ -28,6 +29,7 @@ public class Traverser {
 		points.push(start);
 
 		System.out.println("DFS (Stack) based solution:");
+		Print.print(mazeBuilder.toString() + "\n");
 
 		while (!points.isEmpty()) {
 			Point currPt = points.pop();
@@ -67,6 +69,8 @@ public class Traverser {
 				points.push(wPt);
 			}
 
+			Print.printO(mazeBuilder.toString() + "\n", mazeBuilder.getPrintHeight());
+			Print.sleep(100);
 			// String r = sc.nextLine();
 		}
 
@@ -83,6 +87,7 @@ public class Traverser {
 		points.enqueue(start);
 
 		System.out.println("BFS (Queue) based solution:");
+		Print.print(mazeBuilder.toString() + "\n");
 
 		while (!points.isEmpty()) {
 			Point currPt = points.dequeue();
@@ -123,6 +128,8 @@ public class Traverser {
 					points.enqueue(wPt);
 				}
 
+				Print.printO(mazeBuilder.toString() + "\n", mazeBuilder.getPrintHeight());
+				Print.sleep(100);
 				// String l = sc.nextLine();
 			}
 		}
@@ -134,6 +141,8 @@ public class Traverser {
 	private void backtrack(Point endPt) {
 		Point currPt = endPt;
 		CellState currState = mazeBuilder.get(currPt);
+
+		Print.print(mazeBuilder.toString() + "\n");
 
 		while (currState.type.equals(CellType.EMPTY) || currState.type.equals(CellType.END)) {
 			if (!currState.type.equals(CellType.END)) {
@@ -163,8 +172,9 @@ public class Traverser {
 			}
 
 			currState = mazeBuilder.get(currPt);
-		}
 
-		System.out.println(mazeBuilder);
+			Print.printO(mazeBuilder.toString() + "\n", mazeBuilder.getPrintHeight());
+			Print.sleep(100);
+		}
 	}
 }
