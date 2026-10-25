@@ -7,7 +7,7 @@ import Utils.CLR;
 // 133270890541875l || 135909360475000l
 
 public class Builder {
-	private static final double DEFAULT_CHANCE = 0.20;
+	public static final double DEFAULT_CHANCE = 0.20;
 
 	public record Point(int x, int y) {
 		public Point north() {

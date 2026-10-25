@@ -9,8 +9,21 @@ public class Print {
 		System.out.print(CLR.BACK_LN.toString().repeat(n));
 	}
 
+	public static void back(int n, boolean clear) {
+		if (clear) {
+			for (int i = 0; i < n; i++) {
+				System.out.print(CLR.BACK_LN.toString() + CLR.CLEAR);
+			}
+		}
+	}
+
 	public static void printO(String msg, int ln) {
 		back(ln);
+		print(msg);
+	}
+
+	public static void printO(String msg, int ln, boolean clear) {
+		back(ln, clear);
 		print(msg);
 	}
 
