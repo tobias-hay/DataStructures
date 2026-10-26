@@ -4,6 +4,7 @@ import MazeBuilder.Builder;
 import Traverser.Traverser;
 import Utils.CLR;
 import Utils.Menu;
+import Utils.Print;
 
 public class App {
 	public static void main(String[] args) throws Exception {
@@ -20,6 +21,8 @@ public class App {
 		if (displayX && displayY) {
 			Builder builder = new Builder(xSetting, ySetting, wallChance);
 			Traverser traverser = new Traverser(builder);
+
+			Print.print(CLR.GRAY_FG + "Seed for this maze: " + CLR.WHITE_FG + builder.getSeed() + "\n" + CLR.RESET);
 
 			traverser.dfs();
 			traverser.bfs();

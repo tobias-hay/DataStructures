@@ -81,8 +81,6 @@ public class Builder {
 	private void build() {
 		Random rand = new Random(wallSeed);
 
-		System.out.println("Seed: " + (x - 2) + ";" + (y - 2) + ";" + wallSeed);
-
 		for (int row = 0; row < y; row++) {
 			for (int col = 0; col < x; col++) {
 				boolean isWall = shouldWall(row, col, rand);
@@ -154,6 +152,10 @@ public class Builder {
 
 	public void reset() {
 		build();
+	}
+
+	public String getSeed() {
+		return (x - 2) + ";" + (y - 2) + ";" + wallSeed;
 	}
 
 	public int getPrintHeight() {

@@ -7,6 +7,7 @@ public enum CLR {
 	GREEN_FG("\033[92m"),
 	BLUE_FG("\033[94m"),
 	MAGENTA_FG("\033[95m"),
+	WHITE_FG("\033[97m"),
 
 	// BG
 	RED_BG("\033[41m"),
