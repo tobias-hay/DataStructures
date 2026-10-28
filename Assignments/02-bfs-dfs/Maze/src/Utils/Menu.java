@@ -93,6 +93,38 @@ public class Menu {
 		return opt;
 	}
 
+	private static String getVerifiedSeed(Scanner sc, String q) {
+		int i = 0;
+
+		while (true) {
+			Print.print(q + ": ");
+			i++;
+
+			String l = sc.nextLine().trim();
+
+			if (Builder.verifySeed(l)) {
+				Print.printO(CLR.GRAY_FG + q + ": " + CLR.WHITE_FG + l + "\n" + CLR.RESET, i, true);
+				return l;
+			}
+
+			Print.printO(CLR.RED_FG
+					+ "Invalid input, please enter a valid seed of the form <x>;<y>;<wallSeed> or <wallSeed>\n" + CLR.RESET, 1,
+					true);
+		}
+	}
+
+	public static boolean getInputSeed(Scanner sc) {
+		String q = "Would you like to input a custom seed";
+
+		return getYesNo(sc, q, false);
+	}
+
+	public static String getSeed(Scanner sc) {
+		String q = "Enter the seed you would like to use";
+
+		return getVerifiedSeed(sc, q);
+	}
+
 	public static int getXSetting(Scanner sc) {
 		String q = "Enter the width of the maze";
 

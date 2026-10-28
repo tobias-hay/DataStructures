@@ -40,8 +40,8 @@ public class Builder {
 	private Point start;
 
 	public Builder(String seed) {
-		if (!seed.matches("\\d{1,};\\d{1,};\\d{1,}")) {
-			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed>");
+		if (!verifySeed(seed)) {
+			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed> or <wallSeed>");
 		}
 
 		int xVal;
@@ -54,7 +54,7 @@ public class Builder {
 			yVal = Integer.parseInt(seedParts[1]);
 			wallSeedVal = Long.parseLong(seedParts[2]);
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed>");
+			throw new IllegalArgumentException("Seed must be in the format of <x>;<y>;<wallSeed> or <wallSeed>");
 		}
 
 		this(xVal, yVal, wallSeedVal, DEFAULT_CHANCE);
@@ -160,6 +160,32 @@ public class Builder {
 
 	public int getPrintHeight() {
 		return y + 2;
+	}
+
+	public static boolean verifySeed(String seed) {
+		if (seed.matches("\\d{1,};\\d{1,};\\d{1,}")) {
+			String[] seedParts = seed.split(";");
+
+			try {
+				Integer.parseInt(seedParts[0]);
+				Integer.parseInt(seedParts[1]);
+				Long.parseLong(seedParts[2]);
+			} catch (Exception e) {
+				return false;
+			}
+
+			return true;
+		} else if (seed.matches("\\d{1,}")) {
+			try {
+				Long.parseLong(seed);
+			} catch (Exception e) {
+				return false;
+			}
+
+			return true;
+		}
+
+		return false;
 	}
 
 	@Override
