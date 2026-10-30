@@ -143,7 +143,7 @@ public class Menu {
 		return getPercent(sc, q, Builder.DEFAULT_CHANCE);
 	}
 
-	public static boolean getCanDIsplaySize(Scanner sc, int size, boolean xDir) {
+	public static boolean getCanDisplaySize(Scanner sc, int size, boolean xDir) {
 		String q = "Can your terminal fully display " + (size + 2) + " characters " + (xDir ? "across" : "vertically");
 
 		return getYesNo(sc, q, true);

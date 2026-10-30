@@ -41,8 +41,20 @@ public class App {
 		}
 
 		double wallChance = Menu.getWallChance(sc);
-		boolean displayX = Menu.getCanDIsplaySize(sc, xSetting, true);
-		boolean displayY = Menu.getCanDIsplaySize(sc, ySetting, false);
+
+		boolean displayX = Menu.getCanDisplaySize(sc, xSetting, true);
+		while (!displayX) {
+			Print.print("Please enter a width that can be fully displayed\n");
+			xSetting = Menu.getXSetting(sc);
+			displayX = Menu.getCanDisplaySize(sc, xSetting, true);
+		}
+
+		boolean displayY = Menu.getCanDisplaySize(sc, ySetting, false);
+		while (!displayY) {
+			Print.print("Please enter a height that can be fully displayed\n");
+			ySetting = Menu.getXSetting(sc);
+			displayY = Menu.getCanDisplaySize(sc, ySetting, false);
+		}
 
 		if (displayX && displayY) {
 			Builder builder;
