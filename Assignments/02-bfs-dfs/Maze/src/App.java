@@ -44,15 +44,21 @@ public class App {
 
 		boolean displayX = Menu.getCanDisplaySize(sc, xSetting, true);
 		while (!displayX) {
-			Print.print("Please enter a width that can be fully displayed\n");
+			Print.print(CLR.RED_FG + "Please enter a width that can be fully displayed\n" + CLR.RESET);
 			xSetting = Menu.getXSetting(sc);
 			displayX = Menu.getCanDisplaySize(sc, xSetting, true);
 		}
 
 		boolean displayY = Menu.getCanDisplaySize(sc, ySetting, false);
 		while (!displayY) {
-			Print.print("Please enter a height that can be fully displayed\n");
-			ySetting = Menu.getXSetting(sc);
+			Print.print(CLR.RED_FG + "Please enter a height that can be fully displayed\n" + CLR.RESET);
+			ySetting = Menu.getYSetting(sc);
+			displayY = Menu.getCanDisplaySize(sc, ySetting, false);
+		}
+
+		while (xSetting == 1 && ySetting == 1) {
+			Print.print(CLR.RED_FG + "Please enter a height larger than 1\n" + CLR.RESET);
+			ySetting = Menu.getYSetting(sc);
 			displayY = Menu.getCanDisplaySize(sc, ySetting, false);
 		}
 
