@@ -3,8 +3,6 @@ package Traverser;
 import MazeBuilder.CellState;
 import MazeBuilder.CellType;
 
-import java.util.Scanner;
-
 import MazeBuilder.Builder;
 import MazeBuilder.Builder.Point;
 import Structures.Queue;

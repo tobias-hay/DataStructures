@@ -4,8 +4,6 @@ import java.util.Random;
 
 import Utils.CLR;
 
-// 133270890541875l || 135909360475000l
-
 public class Builder {
 	public static final double DEFAULT_CHANCE = 0.20;
 
