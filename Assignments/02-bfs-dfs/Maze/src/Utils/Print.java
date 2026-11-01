@@ -10,10 +10,8 @@ public class Print {
 	}
 
 	public static void back(int n, boolean clear) {
-		if (clear) {
-			for (int i = 0; i < n; i++) {
-				System.out.print(CLR.BACK_LN.toString() + CLR.CLEAR);
-			}
+		for (int i = 0; i < n; i++) {
+			System.out.print(CLR.BACK_LN.toString() + (clear ? CLR.CLEAR : ""));
 		}
 	}
 
