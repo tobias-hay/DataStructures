@@ -9,15 +9,14 @@ import MazeBuilder.Builder;
 import MazeBuilder.Builder.Point;
 import Structures.Queue;
 import Structures.Stack;
+import Utils.CLR;
 import Utils.Print;
 
 public class Traverser {
 	private Builder mazeBuilder;
-	private Scanner sc;
 
 	public Traverser(Builder mazeBuilder) {
 		this.mazeBuilder = mazeBuilder;
-		this.sc = new Scanner(System.in);
 	}
 
 	public void dfs() {
@@ -72,8 +71,7 @@ public class Traverser {
 			// String r = sc.nextLine();
 		}
 
-		System.out.println(mazeBuilder);
-		System.out.println("Maze is impossible to solve");
+		Print.print(CLR.RED_FG + "Maze is impossible to solve\n" + CLR.RESET);
 	}
 
 	public void bfs() {
@@ -130,8 +128,7 @@ public class Traverser {
 			}
 		}
 
-		System.out.println(mazeBuilder);
-		System.out.println("Maze is impossible to solve");
+		Print.print(CLR.RED_FG + "Maze is impossible to solve\n" + CLR.RESET);
 	}
 
 	private void backtrack(Point endPt) {
