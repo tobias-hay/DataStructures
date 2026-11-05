@@ -8,9 +8,8 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 	// GLOB
 	private int tableSize;
 	private int numElements;
-	private double loadFactor;
+	private double maxLoadFactor; // lambda
 	private LinkedList<HashElement<K, V>>[] table;
-	private final boolean DEBUG = true;
 
 	private int hash(int hashVal) {
 		// Force the number to be positive
@@ -42,6 +41,42 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 		public String toString() {
 			return "[" + key + " : " + value + "]";
 		}
+	}
+
+	public Hash(int tableSize) {
+		this.tableSize = tableSize;
+
+		table = (LinkedList<HashElement<K, V>>[]) new LinkedList[tableSize];
+		this.maxLoadFactor = 0.5;
+		this.numElements = 0;
+	}
+
+	/**
+	 * Measure of how full the hasmap is
+	 * e.g. elements divided by space we have in the map.
+	 * 
+	 * @returns double representing the load factor
+	 */
+	@Override
+	public double loadFactor() {
+		return (double) numElements / tableSize;
+	}
+
+	@Override
+	public boolean add(K key, V value) {
+
+	}
+
+	@Override
+	public boolean remove(K key, V value) {
+	}
+
+	@Override
+	public V getValue(K key) {
+	}
+
+	@Override
+	public void resize(int newSize) {
 	}
 
 	// ALLOWS US TO ITERATE THROUGH ALL KEYS IN THE MAP
@@ -86,25 +121,4 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 	public Iterator<K> iterator() {
 		return new IteratorHelper<K>();
 	}
-
-	@Override
-	public boolean add(K key, V value) {
-	}
-
-	@Override
-	public boolean remove(K key, V value) {
-	}
-
-	@Override
-	public V getValue(K key) {
-	}
-
-	@Override
-	public void resize(int newSize) {
-	}
-
-	@Override
-	public double loadFactor() {
-	}
-
 }
