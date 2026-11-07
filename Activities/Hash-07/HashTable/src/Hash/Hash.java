@@ -47,6 +47,12 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 		this.tableSize = tableSize;
 
 		table = (LinkedList<HashElement<K, V>>[]) new LinkedList[tableSize];
+
+		// Init a LL at each spot of table.
+		for (int i = 0; i < tableSize; i++) {
+			table[i] = new LinkedList<HashElement<K, V>>();
+		}
+
 		this.maxLoadFactor = 0.5;
 		this.numElements = 0;
 	}
@@ -64,19 +70,72 @@ public class Hash<K, V> implements HashI<K, V>, Iterable<K> {
 
 	@Override
 	public boolean add(K key, V value) {
+		if (loadFactor() > maxLoadFactor) {
+			resize(tableSize * 2);
+		}
 
+		// Create the hash element
+		HashElement<K, V> element = new HashElement<>(key, value);
+
+		int hashVal = key.hashCode();
+		hashVal = hash(hashVal);
+
+		table[hashVal].addFirst(element);
+		numElements++;
+
+		return true;
 	}
 
 	@Override
 	public boolean remove(K key, V value) {
+		int index = hash(key.hashCode());
+
+		// walk through linked list
+		int num = 0;
+		for (HashElement<K, V> element : table[index]) {
+			if (((Comparable) element.key).compareTo(key) == 0) {
+				break;
+			}
+			num++;
+		}
+
+		table[index].remove(num);
+		numElements--;
+		return true;
 	}
 
 	@Override
 	public V getValue(K key) {
+		int index = hash(key.hashCode());
+		for (HashElement<K, V> element : table[index]) {
+			if (((Comparable) element.key).compareTo(key) == 0) {
+				return element.value;
+			}
+		}
+
+		return null;
 	}
 
 	@Override
 	public void resize(int newSize) {
+		LinkedList<HashElement<K, V>>[] newTable = (LinkedList<HashElement<K, V>>[]) new LinkedList[newSize];
+		tableSize = newSize;
+
+		// init the LL at all pos
+		for (int i = 0; i < newSize; i++) {
+			newTable[i] = new LinkedList<HashElement<K, V>>();
+		}
+
+		for (K key : this) {
+			V value = getValue(key);
+
+			HashElement<K, V> element = new HashElement(key, value);
+
+			int index = hash(key.hashCode());
+			newTable[index].addFirst(element);
+		}
+
+		table = newTable;
 	}
 
 	// ALLOWS US TO ITERATE THROUGH ALL KEYS IN THE MAP
