@@ -3,7 +3,6 @@ import Graph.Node;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        String cities = "EWOAPHIJ";
         Graph pa = new Graph();
 
         // for (int i = 0; i < cities.length(); i++) {
@@ -60,5 +59,7 @@ public class App {
         pa.addEdge(j, i, 10);
 
         pa.printGraph();
+
+        pa.prims();
     }
 }
