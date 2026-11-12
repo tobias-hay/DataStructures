@@ -1,6 +1,7 @@
 package Graph;
 
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Graph {
   private final boolean DEBUG = true;
@@ -26,6 +27,18 @@ public class Graph {
   private void resetAllNodeVisitState() {
     for (Node node : nodes) {
       node.visited = false;
+    }
+  }
+
+  private void resetAllNodeDistData() {
+    for (Node node : nodes) {
+      node.dist = Integer.MAX_VALUE;
+    }
+  }
+
+  private void resetAllNodePrevData() {
+    for (Node node : nodes) {
+      node.prev = null;
     }
   }
 
@@ -57,6 +70,39 @@ public class Graph {
     } // end for node
 
     return candidate;
+  }
+
+  /**
+   * Returns node with smallest dist that is not visited
+   * 
+   * @return Node or null
+   */
+  private Node findSmallestNode() {
+    int min = Integer.MAX_VALUE;
+    Node cNode = null;
+
+    for (Node node : nodes) {
+      if (!node.visited) {
+        if (node.dist < min) {
+          min = node.dist;
+          cNode = node;
+        }
+      }
+    }
+
+    return cNode;
+  }
+
+  private void printDijkstraTable() {
+    System.out.println();
+
+    System.out.printf("%-10s%-10s%-15s%-10s\n", "NAME", "VISITED", "DIST", "PREV");
+
+    for (Node node : nodes) {
+      System.out.printf("%-10s%-10s%-15s%-10s\n", node.name, node.visited, node.dist, node.prev);
+    }
+
+    System.out.println();
   }
 
   /**
@@ -101,6 +147,70 @@ public class Graph {
 
     // Report final weight
     System.out.println("Total MST cost is " + mst_weight);
+  }
+
+  /**
+   * Dijkstra Algo
+   * 
+   * Find the guaranteed shortest path from start to end
+   */
+  public void dijkstra(Node start, Node end) {
+    // Reset all Dijkstra properties
+    resetAllNodeVisitState();
+    resetAllNodeDistData();
+    resetAllNodePrevData();
+
+    Node curr = start;
+    curr.dist = 0;
+
+    while (curr != null) {
+      if (DEBUG)
+        System.out.println("Current node: " + curr + ", dist: " + curr.dist);
+
+      // Found end, no more processing needed
+      if (curr == end) {
+        break;
+      }
+
+      for (Edge edge : curr.edges) {
+        if (DEBUG)
+          System.out.println("\tEdge: " + edge + ", visited: " + edge.end.visited);
+
+        if (!edge.end.visited) {
+          int newDist = curr.dist + edge.weight;
+          if (DEBUG)
+            System.out.println("\t\tNew Dist: " + newDist + " (" + curr.dist + " + " + edge.weight + ")");
+
+          if (newDist < edge.end.dist) {
+            edge.end.dist = newDist;
+            edge.end.prev = curr;
+            if (DEBUG)
+              System.out.println("\t\tUpdated dist for " + edge.end + " to " + edge.end.dist);
+          } // end dist if
+        } // end visit if
+      } // end ege for
+
+      curr.visit();
+
+      if (DEBUG)
+        printDijkstraTable();
+
+      curr = findSmallestNode();
+    }
+
+    Stack<Node> path = new Stack<>();
+    curr = end;
+
+    while (curr != null) {
+      path.push(curr);
+      curr = curr.prev;
+    }
+
+    System.out.println("Shortest path from " + start + " to " + end);
+
+    while (!path.isEmpty()) {
+      System.out.println("Go to " + path.pop());
+    }
   }
 
   public void printGraph() {

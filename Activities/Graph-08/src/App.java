@@ -61,5 +61,59 @@ public class App {
         pa.printGraph();
 
         pa.prims();
+
+        // Dijkstra Graph
+        Graph graph = new Graph();
+
+        // nodes/vertices
+        Node aD = new Node("A");
+        Node b = new Node("B");
+        Node c = new Node("C");
+        Node d = new Node("D");
+        Node eD = new Node("E");
+        Node f = new Node("F");
+        Node g = new Node("G");
+
+        graph.addNode(aD);
+        graph.addNode(b);
+        graph.addNode(c);
+        graph.addNode(d);
+        graph.addNode(eD);
+        graph.addNode(f);
+        graph.addNode(g);
+
+        // edges
+        graph.addEdge(aD, b, 2);
+        graph.addEdge(aD, c, 3);
+        graph.addEdge(aD, d, 3);
+
+        graph.addEdge(b, aD, 2);
+        graph.addEdge(b, c, 4);
+        graph.addEdge(b, eD, 3);
+
+        graph.addEdge(c, aD, 3);
+        graph.addEdge(c, b, 4);
+        graph.addEdge(c, eD, 1);
+        graph.addEdge(c, d, 5);
+        graph.addEdge(c, f, 6);
+
+        graph.addEdge(d, aD, 3);
+        graph.addEdge(d, c, 5);
+        graph.addEdge(d, f, 7);
+
+        graph.addEdge(eD, b, 3);
+        graph.addEdge(eD, c, 1);
+        graph.addEdge(eD, f, 8);
+
+        graph.addEdge(f, d, 7);
+        graph.addEdge(f, c, 6);
+        graph.addEdge(f, eD, 8);
+        graph.addEdge(f, g, 9);
+
+        graph.addEdge(g, f, 9);
+
+        graph.printGraph();
+
+        graph.dijkstra(aD, g);
     }
 }
